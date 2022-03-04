@@ -9,7 +9,7 @@ import java.util.Map;
 
 public abstract class Tile {
 
-    protected final int tileCoordinate;
+    protected final int tileCoordinate; 
 
     private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
@@ -18,7 +18,7 @@ public abstract class Tile {
         for(int i = 0; i < 64; i++){
             emptyTileMap.put(i, new EmptyTile(i));
         }
-        return ImmutableMap.copyOf(emptyTileMap);
+        return ImmutableMap.copyOf(emptyTileMap); // returns an Immutable version of emptyTileMap
     }
 
     public static Tile createTile(final int tileCoordinate, final Piece piece){
