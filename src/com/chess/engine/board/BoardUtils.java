@@ -11,7 +11,7 @@ public class BoardUtils {
     public static final int NUM_TILES = 64;
     public static final int NUM_TILES_PER_ROW = 8;
 
-    private static boolean[] initColumn(int columnNumber) {
+    private static boolean[] initColumn(int columnNumber) { // Calculates which tiles are in row: 1,2,7,8
         final boolean[] column = new boolean[NUM_TILES];
         do{
             column[columnNumber] = true;
