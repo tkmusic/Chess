@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Pawn extends Piece{
 
-    private static final int [] CANDIDATE_MOVE_COORDINATE = {8, 16};
+    private static final int [] CANDIDATE_MOVE_COORDINATE = {7, 8, 9, 16};
 
     Pawn(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
@@ -41,8 +41,28 @@ public class Pawn extends Piece{
                         !board.getTile(candidateDestinationCoordinate).isTileOccupied()){
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 }
-            }
+            } else if(currentCandidateOffset == 7 &&
+                    !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.getPieceAlliance().isWhite() ||
+                    (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.getPieceAlliance().isBlack()))  )) {
+                if(board.getTile(candidateDestinationCoordinate).isTileOccupied()){
+                    final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
+                    if(this.getPieceAlliance() != pieceOnCandidate.getPieceAlliance()){
+                        // TODO Attack Move with promotion!!!
+                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    }
+                }
+
+            } else if(currentCandidateOffset == 9 &&
+                    !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.getPieceAlliance().isWhite() ||
+                    (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.getPieceAlliance().isBlack()))  )) {
+                if(board.getTile(candidateDestinationCoordinate).isTileOccupied()){
+                    final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
+                    if(this.getPieceAlliance() != pieceOnCandidate.getPieceAlliance()){
+                        // TODO Attack Move with promotion!!!
+                        legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+                    }
+                }
         }
-        return null;
+        return legalMoves;
     }
 }
