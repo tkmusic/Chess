@@ -55,14 +55,15 @@ public class Pawn extends Piece{
             } else if(currentCandidateOffset == 9 &&
                     !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.getPieceAlliance().isWhite() ||
                     (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.getPieceAlliance().isBlack()))  )) {
-                if(board.getTile(candidateDestinationCoordinate).isTileOccupied()){
+                if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
-                    if(this.getPieceAlliance() != pieceOnCandidate.getPieceAlliance()){
+                    if (this.getPieceAlliance() != pieceOnCandidate.getPieceAlliance()) {
                         // TODO Attack Move with promotion!!!
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                     }
                 }
-        }
+            }
+    }
         return legalMoves;
     }
 }
