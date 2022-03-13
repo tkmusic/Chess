@@ -20,12 +20,12 @@ public class Knight extends Piece{
     // Legal Moves based on the Position of the Knight
     // Actual Position + CANDIDATE_MODE_COORDINATES = Legal Position / Move
 
-    Knight(final int piecePosition, final Alliance pieceAlliance) {
+    public Knight(final Alliance pieceAlliance, final int piecePosition) {
         super(piecePosition, pieceAlliance);
     }
 
     @Override
-    public Collection<Move> calculateLegalMove(final Board board) {
+    public Collection<Move> calculateLegalMoves(final Board board) {
 
         final List<Move> legalMoves = new ArrayList<>();
 
@@ -56,6 +56,10 @@ public class Knight extends Piece{
             }
         }
         return ImmutableList.copyOf(legalMoves);
+    }
+    @Override
+    public String toString(){
+        return PieceType.KNIGHT.toString();
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){

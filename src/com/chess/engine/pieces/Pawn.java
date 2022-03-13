@@ -14,12 +14,12 @@ public class Pawn extends Piece{
 
     private static final int [] CANDIDATE_MOVE_COORDINATE = {7, 8, 9, 16};
 
-    Pawn(final int piecePosition, final Alliance pieceAlliance) {
+    public Pawn(final Alliance pieceAlliance, final int piecePosition) {
         super(piecePosition, pieceAlliance);
     }
 
     @Override
-    public Collection<Move> calculateLegalMove(final Board board) {
+    public Collection<Move> calculateLegalMoves(final Board board) {
 
         final List<Move> legalMoves = new ArrayList<>();
 
@@ -66,4 +66,10 @@ public class Pawn extends Piece{
     }
         return legalMoves;
     }
+
+    @Override
+    public String toString(){
+        return PieceType.PAWN.toString();
+    }
+
 }
